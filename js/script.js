@@ -76,6 +76,7 @@ design.addEventListener('change', e => {
             colorOptions[i].setAttribute('selected', false);
         }
     }
+    colorSelection.value = '';
 });
 
 
@@ -143,6 +144,11 @@ form.addEventListener('submit', e => {
 
     if (sumOfCosts === 0) {
         e.preventDefault();
+        registerActivities.classList.add('not-valid');
+        registerActivities.classList.remove('valid');
+    } else {
+        registerActivities.classList.add('valid');
+        registerActivities.classList.remove('not-valid');
     }
     
     if (paymentOption.children[1].getAttribute('selected')) {
@@ -157,10 +163,10 @@ form.addEventListener('submit', e => {
  recieves additional styles
 */
 for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].addEventListener('focus', e => {
+    checkboxes[i].addEventListener('focus', () => {
         checkboxes[i].parentElement.classList.add('focus');
     });
-    checkboxes[i].addEventListener('blur', e => {
+    checkboxes[i].addEventListener('blur', () => {
         checkboxes[i].parentElement.classList.remove('focus');
     });
 }
