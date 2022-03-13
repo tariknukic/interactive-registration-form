@@ -64,8 +64,8 @@ jobRoles.addEventListener('change', e => {
 */
 design.addEventListener('change', e => {
     colorSelection.disabled = false;
+    const designValue = e.target.value;
     for (let i = 1; i < colorOptions.length; i++) {
-        const designValue = e.target.value;
         const theme = colorOptions[i].getAttribute('data-theme');
 
         if (designValue === theme) {
@@ -76,7 +76,12 @@ design.addEventListener('change', e => {
             colorOptions[i].setAttribute('selected', false);
         }
     }
-    colorSelection.value = '';
+
+    if (designValue === 'js puns') {
+        colorSelection.value = colorOptions[1].value;
+    } else {
+        colorSelection.value = colorOptions[4].value;
+    }
 });
 
 
@@ -152,9 +157,9 @@ form.addEventListener('submit', e => {
     }
     
     if (paymentOption.children[1].getAttribute('selected')) {
-        validatingFormField(ccNumberInput, /\d{13,16}/);
-        validatingFormField(zipCodeInput, /\d{5}/);
-        validatingFormField(cvvCodeInput, /\d{3}/);
+        validatingFormField(ccNumberInput, /^\d{13,16}$/);
+        validatingFormField(zipCodeInput, /^\d{5}$/);
+        validatingFormField(cvvCodeInput, /^\d{3}$/);
     }
 });
 
